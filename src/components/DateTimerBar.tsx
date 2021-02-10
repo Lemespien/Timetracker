@@ -1,5 +1,6 @@
 import ICONS from '../resources/IconsCollection';
 import Icon from './IconComponent';
+
 const DateTimerBar = () => {
     return (
         <div className="flex flex-row flex-grow bg-gray-700 border border-gray-900 p-1 items-center justify-between text-white">

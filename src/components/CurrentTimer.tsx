@@ -1,7 +1,12 @@
 import ICONS from "../resources/IconsCollection";
 import Icon from "./IconComponent";
 import IconContainer from "./IconContainer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
+
+type TodayObject = {
+    workingTitle: string,
+    timer: number
+}
 
 const CurrentTimer = () => {
     const [workingTitle, setWorkingtitle] = useState("What are you working on?");
@@ -10,7 +15,7 @@ const CurrentTimer = () => {
     const [active, setActive] = useState(false);
     useEffect(() => {
 
-        const formatTime = (timer) => {
+        const formatTime = (timer: number) => {
             const hours = Math.floor(timer / (60 * 60));
             const minutes = Math.floor((timer % (60 * 60)) / 60);
             const seconds = (timer % (60 * 60)) % 60;
@@ -21,10 +26,17 @@ const CurrentTimer = () => {
         }
 
         if (localStorage.getItem("today") !== null && timer === 0) {
-            const { workingTitle, timer } = JSON.parse(localStorage.getItem("today"));
-            setWorkingtitle(workingTitle);
-            setTimer(timer);
-            setTimeString(formatTime(timer));
+            const todayItem: string = localStorage.getItem("today") || "";
+            let todayObject: TodayObject;
+            if (todayItem.length < 1) {
+                todayObject = { "workingTitle": "", "timer": 0 }
+            }
+            else {
+                todayObject = JSON.parse(todayItem);
+            }
+            setWorkingtitle(todayObject.workingTitle);
+            setTimer(todayObject.timer);
+            setTimeString(formatTime(todayObject.timer));
         }
 
         const updateTimer = () => {
@@ -57,8 +69,8 @@ const CurrentTimer = () => {
         }
     }
 
-    const updateWorkingTitle = (e) => {
-        setWorkingtitle(e.target.value);
+    const updateWorkingTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setWorkingtitle(e?.target?.value);
     }
 
     return (

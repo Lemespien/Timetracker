@@ -1,5 +1,10 @@
 import Icon from "./IconComponent";
-const IconContainer = (props) => {
+
+type Props = {
+    icon: string,
+}
+
+const IconContainer = (props: Props) => {
     return (
         <div className="flex flex-grow justify-center border-r border-gray-900 items-center">
             <Icon icon={props.icon} />

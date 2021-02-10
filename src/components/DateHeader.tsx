@@ -1,4 +1,8 @@
-const DateHeader = (props) => {
+type Props = {
+    title: string,
+    totalTime: string,
+}
+const DateHeader = (props: Props) => {
     return (
         <div className="flex justify-between p-2 text-gray-300">
             <p >{props.title}</p>
