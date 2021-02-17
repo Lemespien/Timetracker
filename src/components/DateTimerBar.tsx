@@ -1,5 +1,6 @@
 import ICONS from '../resources/IconsCollection';
 import Icon from './IconComponent';
+import { getTimeString } from "../helpers/helpers";
 
 interface DateObject {
     date: Date,
@@ -9,21 +10,6 @@ interface DateObject {
 }
 type Prop = {
     info: DateObject,
-}
-const formatTime = (timer: number) => {
-    const hours = Math.floor(timer / (60 * 60));
-    const minutes = Math.floor((timer % (60 * 60)) / 60);
-    const seconds = (timer % (60 * 60)) % 60;
-    return { hours, minutes, seconds }
-}
-const getTimeString = (timer: number, excludeSeconds: boolean) => {
-    const { hours, minutes, seconds } = formatTime(timer)
-    const hourString = hours < 10 ? `0${hours}` : `${hours}`;
-    const minuteString = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    if (excludeSeconds) return `${hourString}:${minuteString}`;
-
-    const secondString = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${hourString}:${minuteString}:${secondString}`;
 }
 
 const myFunc = (date: Date) => {
@@ -68,7 +54,7 @@ const DateTimerBar = (props: Prop) => {
                         defaultValue={getEndTime(props.info.date, props.info.duration)} />
                 </div>
                 <Icon icon={ICONS.calendar} />
-                <p>duration</p>
+                <p>{getTimeString(props.info.duration, false)}</p>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={ICONS.start[0]} />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={ICONS.start[1]} />

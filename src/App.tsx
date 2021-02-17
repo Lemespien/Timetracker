@@ -4,7 +4,8 @@ import Icon from './components/IconComponent';
 import CurrentTimer from "./components/CurrentTimer";
 import Sidebar from "./components/Sidebar";
 import PreviousTimers from "./components/PreviousTimers";
-import { useEffect } from "react";
+import { getTimeString } from "./helpers/helpers";
+
 const locale = {
   en: {
     month_names: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -13,20 +14,6 @@ const locale = {
     week_names_short: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   },
 };
-
-const formatTime = (timer: number) => {
-  const hours = Math.floor(timer / (60 * 60));
-  const minutes = Math.floor((timer % (60 * 60)) / 60);
-  const seconds = (timer % (60 * 60)) % 60;
-  return { hours, minutes, seconds }
-}
-const getTimeString = (timer: number) => {
-  const { hours, minutes, seconds } = formatTime(timer)
-  const hourString = hours < 10 ? `0${hours}` : `${hours}`;
-  const minuteString = minutes < 10 ? `0${minutes}` : `${minutes}`;
-  const secondString = seconds < 10 ? `0${seconds}` : `${seconds}`;
-  return `${hourString}:${minuteString}:${secondString}`;
-}
 
 type DateObject = {
   date: Date,
@@ -44,10 +31,6 @@ type month = {
 }
 
 const App = () => {
-  const elements = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "placeholder", "placeholder"];
-  useEffect(() => {
-
-  })
   const dateDict: month = {}
 
   const filterDates = (date: DateObject) => {
@@ -79,7 +62,7 @@ const App = () => {
     dateKeys.forEach(dateKey => {
       const date = parseInt(dateKey);
       const total = dateDict[key][date].reduce<number>((a, b) => a + b.duration, 0);
-      const totalString = getTimeString(total);
+      const totalString = getTimeString(total, false);
       console.log(totalString);
 
       const children = dateDict[key][date];

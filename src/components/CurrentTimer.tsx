@@ -87,7 +87,7 @@ const CurrentTimer = () => {
                 <IconContainer icon={ICONS.money} />
                 <div className="flex flex-row w-48 justify-between ml-5 p-2 items-center text-gray-200">
                     <p className="font-bold">{timeString}</p>
-                    <button className="bg-blue-500 w-14 h-6 rounded text-white text-xs" onClick={toggleTimer}>{active ? "STOP" : "START"}</button>
+                    <button className={`${active ? "bg-red-500" : "bg-blue-500"} w-14 h-6 rounded text-white text-xs`} onClick={toggleTimer}>{active ? "STOP" : "START"}</button>
                     <Icon icon={ICONS.menu} />
                 </div>
             </div>
