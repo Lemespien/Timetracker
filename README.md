@@ -1,6 +1,5 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Timetracker for projects and a general overview over time spent on projects built with React, Typescript and TailwindCSS
 
 ## Available Scripts
 
