@@ -11,7 +11,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="flex flex-col bg-gray-800 w-52">
+        <div className="flex h-full flex-col bg-gray-800 w-52">
             {
                 sideElements.map((value, index) => <SidebarElement text={value} icon={icons[index]} key={index} />)
             }

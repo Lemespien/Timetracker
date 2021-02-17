@@ -1,16 +1,25 @@
 import DateHeader from './DateHeader';
 import DateTimerBar from './DateTimerBar';
 
-type Props = {
+interface DateObject {
+    date: Date,
+    project: string,
+    title: string,
+    duration: number,
+}
+
+interface Props {
     title: string,
     totalTime: string,
+    children: DateObject[]
 }
 const PreviousTimers = (props: Props) => {
 
     return (
-        <div className="flex flex-col flex-grow bg-gray-800 mb-5 pb-1">
+        //need to add DateTimerBar based on props
+        <div className="flex flex-col bg-gray-800 mb-5 pb-1">
             <DateHeader title={props.title} totalTime={props.totalTime} />
-            <DateTimerBar />
+            {props.children.map((child, index) => <DateTimerBar info={child} key={index} />)}
         </div>
     );
 }

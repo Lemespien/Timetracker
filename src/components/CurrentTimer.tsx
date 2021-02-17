@@ -74,7 +74,7 @@ const CurrentTimer = () => {
     }
 
     return (
-        <div className="h-1/3 bg-gray-700 border border-gray-900 mb-5">
+        <div className="bg-gray-700 border border-gray-900 mb-5">
             <div className="flex flex-row h-14 items-center justify-between p-2">
                 <input type="text" placeholder="What are you working on?" className="w-1/3 h-8 bg-transparent" onChange={updateWorkingTitle} value={workingTitle} />
                 <div className="flex flex-row w-20 justify-between text-blue-500 mr-4 cursor-pointer">
